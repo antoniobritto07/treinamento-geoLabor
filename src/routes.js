@@ -1,12 +1,9 @@
-//@ts-ignore
 const express = require('express');
 
-// const coffeesRouter = require('../modules/coffees')
-// const couponRouter = require('../modules/coupon');
-//@ts-ignore
+const userRouter = require('./modules/user');
+
 const routes = express.Router()
 
-// routes.use('/coffees', coffeesRouter)
-// routes.use('/coupon', couponRouter)
+routes.use('/user', userRouter)
 
 module.exports = routes

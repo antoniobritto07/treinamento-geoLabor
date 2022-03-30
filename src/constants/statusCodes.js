@@ -3,4 +3,4 @@ const StatusCodes = {
     SUCCESS: 200,
   }
   
-export default StatusCodes;
+module.exports = StatusCodes;

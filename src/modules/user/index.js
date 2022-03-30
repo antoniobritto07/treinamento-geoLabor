@@ -1,9 +1,9 @@
-import express from 'express';
+const express = require('express');
 const userRouter = express.Router();
 
 const createUser = require("./controllers/post");
 
-userRouter.get(
+userRouter.post(
     '/',
     createUser
 );

@@ -1,4 +1,3 @@
-//@ts-ignore
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 
@@ -28,12 +27,13 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-UserSchema.pre('save', async (next) => {
-    const hash = await bcrypt.hash(this.password, 10);
-    this.password = hash;
+//esquema para nao salvar a senha no banco de dados
+// UserSchema.pre('save', async (next) => {
+//     const hash = await bcrypt.hash(this.password, 10);
+//     this.password = hash;
 
-    next();
-})
+//     next();
+// })
 
 const User = mongoose.model('User', UserSchema);
 

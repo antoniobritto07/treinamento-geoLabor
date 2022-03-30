@@ -1,14 +1,9 @@
-import StatusCodes from "../../../../constants/statusCodes";
-const User = require('../../model')
+const StatusCodes = require("../../../../constants/statusCodes");
+const User = require("../../model")
 
 module.exports =
     async (req, res) => {
         try {
-            const { email } = req.body;
-            if (User.findOne({ email })) {
-                return res.status(400).send({ error: 'User already exists!' });
-            }
-
             const user = await User.create(req.body);
 
             return res.status(StatusCodes.SUCCESS).json(user)
