@@ -1,5 +1,5 @@
 //@ts-ignore
-const mongoose = require('../../../database');
+const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs')
 
 const UserSchema = new mongoose.Schema({

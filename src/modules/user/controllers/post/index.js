@@ -1,9 +1,8 @@
-import { Request, Response } from 'express';
 import StatusCodes from "../../../../constants/statusCodes";
 const User = require('../../model')
 
 module.exports =
-    async (req: Request, res: Response) => {
+    async (req, res) => {
         try {
             const { email } = req.body;
             if (User.findOne({ email })) {
@@ -16,6 +15,7 @@ module.exports =
         }
         catch (err) {
             console.log(err)
-            return res.status(StatusCodes.INTERNAL_SERVER_ERROR).json({ notification: "Error while trying to create a new user", error: err })
+            return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
+                .json({ notification: "Error while trying to create a new user", error: err })
         }
     }
