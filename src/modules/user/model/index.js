@@ -20,10 +20,6 @@ const UserSchema = new mongoose.Schema({
     createdAt: {
         type: Date,
         default: new Date()
-    },
-    is_Owner: {
-        type: Boolean,
-        required: true
     }
 })
 

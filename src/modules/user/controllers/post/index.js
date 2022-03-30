@@ -1,12 +1,16 @@
+const UserRepository = require("../../repositories/user");
 const StatusCodes = require("../../../../constants/statusCodes");
-const User = require("../../model")
+const generateToken = require("../../../../utils/generateToken");
 
 module.exports =
     async (req, res) => {
         try {
-            const user = await User.create(req.body);
+            const user = await UserRepository.createUser(req.body);
 
-            return res.status(StatusCodes.SUCCESS).json(user)
+            return res.status(StatusCodes.SUCCESS).send({
+                user,
+                token: generateToken({ id: user.id })
+            });
         }
         catch (err) {
             console.log(err)
