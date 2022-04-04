@@ -1,21 +1,19 @@
-const User = require("../../../user/model");
-// const UserRepository = require("../../repositories/user");
 const StatusCodes = require("../../../../constants/statusCodes");
-const jwt = require("jsonwebtoken");
 const generateToken = require("../../../../utils/generateToken")
+const getUser = require("../../../user/services/getUser")
 
 module.exports =
     async (req, res) => {
         try {
             const { email, password } = req.body;
 
-            const user = await User.findOne({ email, password });
+            const user = await getUser( email, password );
 
             if (!user) {
                 return res.status(400).send({ error: "User not found!" });
             }
 
-            const token = generateToken(user.id)
+            const token = generateToken(user.id);
 
             return res.status(StatusCodes.SUCCESS).json({ user, token });
         }

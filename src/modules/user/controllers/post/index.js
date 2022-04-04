@@ -1,11 +1,11 @@
-const UserRepository = require("../../repositories/user");
 const StatusCodes = require("../../../../constants/statusCodes");
 const generateToken = require("../../../../utils/generateToken");
+const createUser = require('../../services/createUser');
 
 module.exports =
     async (req, res) => {
         try {
-            const user = await UserRepository.createUser(req.body);
+            const user = await createUser(req.body);
 
             return res.status(StatusCodes.SUCCESS).send({
                 user,

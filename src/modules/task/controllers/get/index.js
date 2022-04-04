@@ -1,11 +1,11 @@
 const StatusCodes = require("../../../../constants/statusCodes");
-const Task = require("../../model");
+const getTasks = require("../../services/getTasks");
 
 module.exports =
     async (req, res) => {
         try {
             const userId = req.userId;
-            const tasks = await Task.find({ user: userId }).populate('user');
+            const tasks = await getTasks(userId)
 
             return res.status(StatusCodes.SUCCESS).send({ tasks });
         }

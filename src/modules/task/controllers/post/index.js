@@ -1,10 +1,11 @@
 const StatusCodes = require("../../../../constants/statusCodes");
-const Task = require("../../model");
+const createTask = require("../../services/createTask");
 
 module.exports =
     async (req, res) => {
         try {
-            const task = await Task.create({...req.body, user: req.userId});
+            const userId = req.userId;
+            const task = await createTask(req.body, userId);
             return res.status(StatusCodes.SUCCESS).json({ task });
         }
         catch (err) {

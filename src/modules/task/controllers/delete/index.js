@@ -1,10 +1,11 @@
 const StatusCodes = require("../../../../constants/statusCodes");
-const Task = require("../../model");
+const deleteTask = require("../../services/deleteTask")
 
 module.exports =
     async (req, res) => {
         try {
-            await Task.findByIdAndRemove(req.params.taskId);
+            const { taskId } = req.params;
+            await deleteTask(taskId)
 
             return res.status(StatusCodes.SUCCESS)
                 .json({ notification: "Task has been deleted successfully" });

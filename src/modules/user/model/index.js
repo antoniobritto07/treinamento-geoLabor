@@ -23,14 +23,6 @@ const UserSchema = new mongoose.Schema({
     }
 })
 
-//esquema para nao salvar a senha no banco de dados
-// UserSchema.pre('save', async (next) => {
-//     const hash = await bcrypt.hash(this.password, 10);
-//     this.password = hash;
-
-//     next();
-// })
-
 const User = mongoose.model('User', UserSchema);
 
 module.exports = User;
