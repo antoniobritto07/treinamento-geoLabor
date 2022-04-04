@@ -4,12 +4,14 @@ const Task = require("../../model");
 module.exports =
     async (req, res) => {
         try {
-            const task = await Task.create({...req.body, user: req.userId});
-            return res.status(StatusCodes.SUCCESS).json({ task });
+            const userId = req.userId;
+            const tasks = await Task.find({ user: userId }).populate('user');
+
+            return res.status(StatusCodes.SUCCESS).send({ tasks });
         }
         catch (err) {
             console.log(err)
             return res.status(StatusCodes.INTERNAL_SERVER_ERROR)
-                .json({ notification: "Error while trying to create a new task", error: err })
+                .json({ notification: "Error while trying to get the tasks of an user", error: err })
         }
     }
