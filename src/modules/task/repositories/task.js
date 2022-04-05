@@ -3,9 +3,14 @@ const DBError = require("../../../errors/DBError");
 
 class TaskRepository {
     get = async (
-        userId
+        userId,
+        params
     ) => {
         try {
+            if (params !== undefined || null) {
+                const tasksFilteredByStatus = await Task.find({ ...params, user: userId }).populate('user');
+                return tasksFilteredByStatus;
+            }
             const tasks = await Task.find({ user: userId }).populate('user');
 
             return tasks;

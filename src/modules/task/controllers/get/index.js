@@ -5,6 +5,11 @@ module.exports =
     async (req, res) => {
         try {
             const userId = req.userId;
+
+            if (Object.keys(req.query).length !== 0) {
+                const tasksFilteredByStatus = await getTasks(userId, req.query)
+                return res.status(StatusCodes.SUCCESS).send({ tasksFilteredByStatus });
+            }
             const tasks = await getTasks(userId)
 
             return res.status(StatusCodes.SUCCESS).send({ tasks });
