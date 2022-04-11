@@ -7,6 +7,8 @@ module.exports =
         try {
             const user = await createUser(req.body);
 
+            console.log(user)
+
             return res.status(StatusCodes.SUCCESS).send({
                 user,
                 token: generateToken({ id: user.id })

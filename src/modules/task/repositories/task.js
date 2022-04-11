@@ -7,11 +7,7 @@ class TaskRepository {
         params
     ) => {
         try {
-            if (params !== undefined || null) {
-                const tasksFilteredByStatus = await Task.find({ ...params, user: userId }).populate('user');
-                return tasksFilteredByStatus;
-            }
-            const tasks = await Task.find({ user: userId }).populate('user');
+            const tasks = await Task.find({ ...params, user: userId }).populate('user');
 
             return tasks;
         }
