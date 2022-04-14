@@ -9,10 +9,9 @@ module.exports =
 
             console.log(user)
 
-            return res.status(StatusCodes.SUCCESS).send({
-                user,
-                token: generateToken({ id: user.id })
-            });
+            const token = generateToken(user.id)
+
+            return res.status(StatusCodes.SUCCESS).json({ user, token });
         }
         catch (err) {
             console.log(err)
