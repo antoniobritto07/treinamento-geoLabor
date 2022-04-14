@@ -45,7 +45,7 @@ class TaskRepository {
         newTaskData
     ) => {
         try {
-            const taskUpdated = Task.findOneAndUpdate(taskId, newTaskData, { new: true });
+            const taskUpdated = Task.findOneAndUpdate({_id: taskId}, {...newTaskData}, { new: true });
 
             return taskUpdated;
         }
